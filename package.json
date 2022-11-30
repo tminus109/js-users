@@ -1,0 +1,7 @@
+{
+  "name": "js-users",
+  "packageManager": "yarn@3.3.0",
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  }
+}
