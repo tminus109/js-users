@@ -19,12 +19,12 @@ Create a front-end application, where you can handle user objects stored on a se
 
 A user object has 6 attributes:
 
-id (mandatory, but the server automatically sets it)
-first_name (mandatory)
-last_name (mandatory)
-status (mandatory, values: [active, locked])
-created_at (mandatory, but the server automatically sets it)
-updated_at (mandatory, but the server automatically sets it)
+ - id (mandatory, but the server automatically sets it)
+ - first_name (mandatory)
+ - last_name (mandatory)
+ - status (mandatory, values: [active, locked])
+ - created_at (mandatory, but the server automatically sets it)
+ - updated_at (mandatory, but the server automatically sets it)
 
 The application’s routing should work, so that if I create a request to the /new action, the new user form should be displayed.
 
