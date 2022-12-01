@@ -9,18 +9,18 @@ const prevBtn = document.querySelector("#prev-btn");
 const pageNumSpan = document.querySelector("#page-num-span");
 const nextBtn = document.querySelector("#next-btn");
 const lastBtn = document.querySelector("#last-btn");
-
 const fetchedUsers = await fetchUsers(errorMsg!);
-
 let limit = 10;
 let pageNum = 0;
 let lastPageNum = Math.ceil(fetchedUsers!.length / limit);
 
-pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
-
 renderUsers(fetchedUsers!, tbody!, pageNum, limit);
 
-newUserBtn?.addEventListener("click", () => {});
+pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+
+newUserBtn?.addEventListener("click", () => {
+  window.location.href = "/new";
+});
 
 firstBtn?.addEventListener("click", () => {
   pageNum = 0;

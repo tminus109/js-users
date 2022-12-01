@@ -1,7 +1,8 @@
-import express from "express";
+import { Router } from "express";
+
 import { serveUsersView } from "../controllers/usersController.js";
 
-const usersRouter = express.Router();
+const usersRouter = Router();
 
 usersRouter.get("/users", serveUsersView);
 
