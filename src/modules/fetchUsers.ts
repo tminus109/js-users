@@ -1,6 +1,13 @@
 import User from "../types/models/User.js";
 
-async function fetchUsers(url: string, myInit: {}, errorMsg: Element) {
+const url = "https://assessment-users-backend.herokuapp.com/users";
+const myInit = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+async function fetchUsers(errorMsg: Element) {
   return await fetch(url, myInit)
     .then((response) => {
       if (!response.ok) {

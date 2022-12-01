@@ -1,14 +1,51 @@
 import fetchUsers from "./fetchUsers.js";
 import renderUsers from "./renderUsers.js";
 
-const table = document.querySelector("table");
+const newUserBtn = document.querySelector("#new-user-btn");
+const tbody = document.querySelector("tbody");
 const errorMsg = document.querySelector("#error-msg");
-const url = "https://assessment-users-backend.herokuapp.com/users";
-const myInit = {
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
-const fetchedUsers = await fetchUsers(url, myInit, errorMsg!);
+const firstBtn = document.querySelector("#first-btn");
+const prevBtn = document.querySelector("#prev-btn");
+const pageNumSpan = document.querySelector("#page-num-span");
+const nextBtn = document.querySelector("#next-btn");
+const lastBtn = document.querySelector("#last-btn");
 
-renderUsers(fetchedUsers!, table!);
+const fetchedUsers = await fetchUsers(errorMsg!);
+
+let limit = 10;
+let pageNum = 0;
+let lastPageNum = Math.ceil(fetchedUsers!.length / limit);
+
+pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+
+renderUsers(fetchedUsers!, tbody!, pageNum, limit);
+
+newUserBtn?.addEventListener("click", () => {});
+
+firstBtn?.addEventListener("click", () => {
+  pageNum = 0;
+  renderUsers(fetchedUsers!, tbody!, pageNum, limit);
+  pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+});
+
+prevBtn?.addEventListener("click", () => {
+  if (pageNum !== 0) {
+    pageNum--;
+    renderUsers(fetchedUsers!, tbody!, pageNum, limit);
+    pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+  }
+});
+
+nextBtn?.addEventListener("click", () => {
+  if (pageNum + 1 !== lastPageNum) {
+    pageNum++;
+    renderUsers(fetchedUsers!, tbody!, pageNum, limit);
+    pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+  }
+});
+
+lastBtn?.addEventListener("click", () => {
+  pageNum = lastPageNum - 1;
+  renderUsers(fetchedUsers!, tbody!, pageNum, limit);
+  pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+});

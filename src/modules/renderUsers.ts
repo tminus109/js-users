@@ -1,24 +1,33 @@
 import User from "../types/models/User.js";
 
-function renderUsers(fetchedUsers: User[], table: HTMLTableElement) {
-  const limit = 10;
-  let pageCount = fetchedUsers.length / limit;
-  if (length % limit !== 0) {
-    pageCount += 1;
-  }
-  let startIndex = 0;
-  let pageNum = 0;
+function renderUsers(
+  fetchedUsers: User[],
+  tbody: HTMLTableSectionElement,
+  pageNum: number,
+  limit: number
+) {
+  const startIndex = pageNum * limit;
 
-  for (let i = startIndex; i < limit; i++) {
+  if (fetchedUsers.length - startIndex < limit) {
+    limit = fetchedUsers.length - startIndex;
+  }
+
+  while (tbody.lastChild) {
+    tbody.removeChild(tbody.lastChild);
+  }
+
+  for (let i = startIndex; i < startIndex + limit; i++) {
     const user: User = fetchedUsers[i];
+
     const newRow = document.createElement("tr");
     const firstName = document.createElement("td");
     const lastName = document.createElement("td");
     const createdAt = document.createElement("td");
-    const edit = document.createElement("td");
-    const lock = document.createElement("td");
+    const editTd = document.createElement("td");
+    const lockTd = document.createElement("td");
     const editBtn = document.createElement("button");
     const lockBtn = document.createElement("button");
+
     firstName.textContent = user.first_name;
     lastName.textContent = user.last_name;
     if (user.created_at) {
@@ -30,14 +39,15 @@ function renderUsers(fetchedUsers: User[], table: HTMLTableElement) {
     } else {
       lockBtn.textContent = "Lock";
     }
-    table.appendChild(newRow);
+
+    tbody.appendChild(newRow);
     newRow.appendChild(firstName);
     newRow.appendChild(lastName);
     newRow.appendChild(createdAt);
-    newRow.appendChild(edit);
-    newRow.appendChild(lock);
-    edit.appendChild(editBtn);
-    lock.appendChild(lockBtn);
+    newRow.appendChild(editTd);
+    newRow.appendChild(lockTd);
+    editTd.appendChild(editBtn);
+    lockTd.appendChild(lockBtn);
   }
 }
 
