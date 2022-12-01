@@ -9,14 +9,32 @@
     <script type="module" src="users.js"></script>
   </head>
   <body>
-    <h1>Users</h1>
-    <table>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Created At</th>
-      </tr>
-    </table>
-    <p id="error-msg"></p>
+    <header>
+      <h1>Users</h1>
+    </header>
+    <main>
+      <div id="new-user-div">
+        <button>Add New User</button>
+      </div>
+      <div id="table-div">
+        <table>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Created At</th>
+            <th>Edit User</th>
+            <th>Lock User</th>
+          </tr>
+        </table>
+        <p id="error-msg"></p>
+      </div>
+      <div id="nav-div">
+        <button>First</button>
+        <button>Prev</button>
+        <span id="page-num">Page #</span>
+        <button>Next</button>
+        <button>Last</button>
+      </div>
+    </main>
   </body>
 </html>

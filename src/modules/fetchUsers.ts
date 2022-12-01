@@ -8,8 +8,8 @@ async function fetchUsers(url: string, myInit: {}, errorMsg: Element) {
       }
       return response.json() as Promise<Array<User>>;
     })
-    .then((data) => {
-      return data;
+    .then((users) => {
+      return users;
     })
     .catch((error) => {
       errorMsg!.textContent = error.message;

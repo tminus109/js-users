@@ -9,7 +9,6 @@ const myInit = {
     "Content-Type": "application/json",
   },
 };
-
 const fetchedUsers = await fetchUsers(url, myInit, errorMsg!);
 
 renderUsers(fetchedUsers!, table!);
