@@ -5,13 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add New User</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="modulepreload" href="/newUser.js" />
+    <script type="module" src="/newUser.js"></script>
   </head>
   <body>
     <header>
       <h1>Add New User</h1>
     </header>
     <main>
-      <p>Hello Dina!</p>
+      <form action="/new" method="post">
+        <ul>
+          <li>
+            <label for="first-name" id="first-name-lbl">First name:</label>
+          </li>
+          <li>
+            <input
+              type="text"
+              name="first_name"
+              id="first-name"
+              maxlength="20"
+              placeholder="First name"
+              autofocus
+            />
+          </li>
+          <li>
+            <label for="last-name" id="last-name-lbl">Last name:</label>
+          </li>
+          <li>
+            <input
+              type="text"
+              name="last_name"
+              id="last-name"
+              maxlength="20"
+              placeholder="Last name"
+            />
+          </li>
+          <li>
+            <button type="button" id="add-btn">Add</button>
+          </li>
+        </ul>
+      </form>
+      <p id="msg"></p>
+      <footer>
+        <a href="/users">Back to users</a>
+      </footer>
     </main>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import User from "../types/models/User.js";
+import User from "./User.js";
 
 function renderUsers(
   fetchedUsers: User[],

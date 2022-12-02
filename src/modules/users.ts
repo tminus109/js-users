@@ -19,7 +19,7 @@ renderUsers(fetchedUsers!, tbody!, pageNum, limit);
 pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
 
 newUserBtn?.addEventListener("click", () => {
-  window.location.href = "/new";
+  window.location.href = "/users/new";
 });
 
 firstBtn?.addEventListener("click", () => {

@@ -1,4 +1,4 @@
-import User from "../types/models/User.js";
+import User from "./User.js";
 
 const url = "https://assessment-users-backend.herokuapp.com/users";
 const myInit = {
@@ -14,9 +14,6 @@ async function fetchUsers(errorMsg: Element) {
         throw new Error(`HTTP error: ${response.status}.`);
       }
       return response.json() as Promise<Array<User>>;
-    })
-    .then((users) => {
-      return users;
     })
     .catch((error) => {
       errorMsg!.textContent = error.message;

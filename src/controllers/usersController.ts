@@ -12,4 +12,10 @@ const serveUsersView = (req: Request, res: Response) => {
   );
 };
 
-export { serveUsersView };
+const serveNewUserView = (req: Request, res: Response) => {
+  res.sendFile(
+    path.join(__dirname, "..", "..", "assets", "views", "new-user.html")
+  );
+};
+
+export { serveUsersView, serveNewUserView };
