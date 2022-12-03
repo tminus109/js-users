@@ -1,4 +1,4 @@
-import fetchUsers from "./fetchUsers.js";
+import { getUsers } from "./fetchUsers.js";
 import renderUsers from "./renderUsers.js";
 
 const newUserBtn = document.querySelector("#new-user-btn");
@@ -9,7 +9,7 @@ const prevBtn = document.querySelector("#prev-btn");
 const pageNumSpan = document.querySelector("#page-num-span");
 const nextBtn = document.querySelector("#next-btn");
 const lastBtn = document.querySelector("#last-btn");
-const fetchedUsers = await fetchUsers(errorMsg!);
+const fetchedUsers = await getUsers(errorMsg!);
 let limit = 10;
 let pageNum = 0;
 let lastPageNum = Math.ceil(fetchedUsers!.length / limit);

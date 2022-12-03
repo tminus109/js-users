@@ -1,6 +1,5 @@
-import Status from "./Status.js";
-import User from "./User.js";
-import { handleResponse, postNewUser } from "./addNewUser.js";
+import { handleResponse, postUser } from "./fetchUsers.js";
+import { Status, User } from "./types.js";
 
 const addBtn = document.querySelector("#add-btn");
 const firstNameLbl = document.querySelector("#first-name-lbl");
@@ -18,7 +17,7 @@ async function saveNewUser() {
   lastNameLbl!.textContent = "Last name:";
   newUser.first_name = (firstNameInp as HTMLInputElement).value;
   newUser.last_name = (lastNameInp as HTMLInputElement).value;
-  const response = await postNewUser(newUser, msg!);
+  const response = await postUser(newUser, msg!);
   if (response) {
     handleResponse(response, firstNameLbl!, lastNameLbl!, msg!);
   }

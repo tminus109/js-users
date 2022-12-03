@@ -1,4 +1,4 @@
-import User from "./User.js";
+import { User } from "./types.js";
 
 function renderUsers(
   fetchedUsers: User[],
@@ -39,6 +39,10 @@ function renderUsers(
     } else {
       lockBtn.textContent = "Lock";
     }
+
+    editBtn.addEventListener("click", () => {
+      window.location.href = `/users/${user.id}/edit`;
+    });
 
     tbody.appendChild(newRow);
     newRow.appendChild(firstName);

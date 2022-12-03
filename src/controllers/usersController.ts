@@ -18,4 +18,10 @@ const serveNewUserView = (req: Request, res: Response) => {
   );
 };
 
-export { serveUsersView, serveNewUserView };
+const serveEditUserView = (req: Request, res: Response) => {
+  res.sendFile(
+    path.join(__dirname, "..", "..", "assets", "views", "edit-user.html")
+  );
+};
+
+export { serveUsersView, serveNewUserView, serveEditUserView };

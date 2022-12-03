@@ -1,4 +1,7 @@
-import Status from "./Status.js";
+enum Status {
+  Active = "active",
+  Locked = "locked",
+}
 
 type User = {
   id?: number;
@@ -10,4 +13,4 @@ type User = {
   url?: string;
 };
 
-export default User;
+export { Status, User };
