@@ -1,51 +1,51 @@
 import { getUsers } from "./fetchUsers.js";
 import renderUsers from "./renderUsers.js";
 
-const newUserBtn = document.querySelector("#new-user-btn");
-const tbody = document.querySelector("tbody");
-const errorMsg = document.querySelector("#error-msg");
-const firstBtn = document.querySelector("#first-btn");
-const prevBtn = document.querySelector("#prev-btn");
-const pageNumSpan = document.querySelector("#page-num-span");
-const nextBtn = document.querySelector("#next-btn");
-const lastBtn = document.querySelector("#last-btn");
-const fetchedUsers = await getUsers(errorMsg!);
+const newUserBtn = document.querySelector("#new-user-btn") as HTMLButtonElement;
+const tbody = document.querySelector("tbody") as HTMLTableSectionElement;
+const msg = document.querySelector("#msg") as HTMLSpanElement;
+const firstBtn = document.querySelector("#first-btn") as HTMLButtonElement;
+const prevBtn = document.querySelector("#prev-btn") as HTMLButtonElement;
+const pageNumSpan = document.querySelector("#page-num-span") as HTMLSpanElement;
+const nextBtn = document.querySelector("#next-btn") as HTMLButtonElement;
+const lastBtn = document.querySelector("#last-btn") as HTMLButtonElement;
+const fetchedUsers = await getUsers(msg!);
 let limit = 10;
 let pageNum = 0;
 let lastPageNum = Math.ceil(fetchedUsers!.length / limit);
 
-renderUsers(fetchedUsers!, tbody!, pageNum, limit);
+renderUsers(fetchedUsers!, tbody!, pageNum, limit, msg!);
 
-pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+pageNumSpan.textContent = `${pageNum + 1} / ${lastPageNum}`;
 
-newUserBtn?.addEventListener("click", () => {
+newUserBtn.addEventListener("click", () => {
   window.location.href = "/users/new";
 });
 
-firstBtn?.addEventListener("click", () => {
+firstBtn.addEventListener("click", () => {
   pageNum = 0;
-  renderUsers(fetchedUsers!, tbody!, pageNum, limit);
-  pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+  renderUsers(fetchedUsers!, tbody, pageNum, limit, msg);
+  pageNumSpan.textContent = `${pageNum + 1} / ${lastPageNum}`;
 });
 
-prevBtn?.addEventListener("click", () => {
+prevBtn.addEventListener("click", () => {
   if (pageNum !== 0) {
     pageNum--;
-    renderUsers(fetchedUsers!, tbody!, pageNum, limit);
-    pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+    renderUsers(fetchedUsers!, tbody, pageNum, limit, msg);
+    pageNumSpan.textContent = `${pageNum + 1} / ${lastPageNum}`;
   }
 });
 
-nextBtn?.addEventListener("click", () => {
+nextBtn.addEventListener("click", () => {
   if (pageNum + 1 !== lastPageNum) {
     pageNum++;
-    renderUsers(fetchedUsers!, tbody!, pageNum, limit);
-    pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+    renderUsers(fetchedUsers!, tbody, pageNum, limit, msg);
+    pageNumSpan.textContent = `${pageNum + 1} / ${lastPageNum}`;
   }
 });
 
-lastBtn?.addEventListener("click", () => {
+lastBtn.addEventListener("click", () => {
   pageNum = lastPageNum - 1;
-  renderUsers(fetchedUsers!, tbody!, pageNum, limit);
-  pageNumSpan!.textContent = `${pageNum + 1} / ${lastPageNum}`;
+  renderUsers(fetchedUsers!, tbody, pageNum, limit, msg);
+  pageNumSpan.textContent = `${pageNum + 1} / ${lastPageNum}`;
 });

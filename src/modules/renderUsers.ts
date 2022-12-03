@@ -1,10 +1,12 @@
-import { User } from "./types.js";
+import { putUser } from "./fetchUsers.js";
+import { Status, User } from "./types.js";
 
 function renderUsers(
   fetchedUsers: User[],
   tbody: HTMLTableSectionElement,
   pageNum: number,
-  limit: number
+  limit: number,
+  msg: HTMLSpanElement
 ) {
   const startIndex = pageNum * limit;
 
@@ -20,38 +22,61 @@ function renderUsers(
     const user: User = fetchedUsers[i];
 
     const newRow = document.createElement("tr");
-    const firstName = document.createElement("td");
-    const lastName = document.createElement("td");
-    const createdAt = document.createElement("td");
+    const firstNameTd = document.createElement("td");
+    const lastNameTd = document.createElement("td");
+    const createdAtTd = document.createElement("td");
     const editTd = document.createElement("td");
     const lockTd = document.createElement("td");
     const editBtn = document.createElement("button");
     const lockBtn = document.createElement("button");
 
-    firstName.textContent = user.first_name;
-    lastName.textContent = user.last_name;
-    if (user.created_at) {
-      createdAt.textContent = user.created_at;
-    }
+    firstNameTd.textContent = user.first_name;
+    lastNameTd.textContent = user.last_name;
+    createdAtTd.textContent = user.created_at!;
     editBtn.textContent = "Edit";
-    if (user.status === "locked") {
-      lockBtn.textContent = "Unlock";
-    } else {
-      lockBtn.textContent = "Lock";
-    }
+    lockBtn.textContent = setLockBtnText(user);
 
     editBtn.addEventListener("click", () => {
       window.location.href = `/users/${user.id}/edit`;
     });
 
+    lockBtn.addEventListener("click", async () => {
+      reverseUserStatus(user);
+      const response = await putUser(String(user.id), user, msg!);
+
+      if (response) {
+        msg.textContent = response.toString();
+        reverseUserStatus(user);
+      } else {
+        msg.textContent = "";
+        lockBtn.textContent = setLockBtnText(user)!;
+      }
+    });
+
     tbody.appendChild(newRow);
-    newRow.appendChild(firstName);
-    newRow.appendChild(lastName);
-    newRow.appendChild(createdAt);
+    newRow.appendChild(firstNameTd);
+    newRow.appendChild(lastNameTd);
+    newRow.appendChild(createdAtTd);
     newRow.appendChild(editTd);
     newRow.appendChild(lockTd);
     editTd.appendChild(editBtn);
     lockTd.appendChild(lockBtn);
+  }
+}
+
+function setLockBtnText(user: User): string {
+  if (user.status === Status.Locked) {
+    return "Unlock";
+  } else {
+    return "Lock";
+  }
+}
+
+function reverseUserStatus(user: User) {
+  if (user.status === Status.Active) {
+    user.status = Status.Locked;
+  } else {
+    user.status = Status.Active;
   }
 }
 

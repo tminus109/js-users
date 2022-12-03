@@ -1,28 +1,34 @@
 import { getUser, handleResponse, putUser } from "./fetchUsers.js";
 
-const firstNameLbl = document.querySelector("#first-name-lbl");
-const firstNameInp = document.querySelector("#first-name");
-const lastNameLbl = document.querySelector("#last-name-lbl");
-const lastNameInp = document.querySelector("#last-name");
-const updateBtn = document.querySelector("#update-btn");
-const msg = document.querySelector("#msg");
+const firstNameLbl = document.querySelector(
+  "#first-name-lbl"
+) as HTMLLabelElement;
+const firstNameInp = document.querySelector("#first-name") as HTMLInputElement;
+const lastNameLbl = document.querySelector(
+  "#last-name-lbl"
+) as HTMLLabelElement;
+const lastNameInp = document.querySelector("#last-name") as HTMLInputElement;
+const updateBtn = document.querySelector("#update-btn") as HTMLButtonElement;
+const msg = document.querySelector("#msg") as HTMLSpanElement;
 
 const splitUrl = window.location.href.split("/");
 const id = splitUrl[splitUrl.length - 2];
-const user = await getUser(id!, msg!);
+const user = await getUser(id, msg);
 
-(firstNameInp as HTMLInputElement).value = user!.first_name;
-(lastNameInp as HTMLInputElement).value = user!.last_name;
+firstNameInp.value = user!.first_name;
+lastNameInp.value = user!.last_name;
 
-updateBtn?.addEventListener("click", updateUser);
+updateBtn.addEventListener("click", updateUser);
 
 async function updateUser() {
-  user!.first_name = (firstNameInp as HTMLInputElement).value;
-  user!.last_name = (lastNameInp as HTMLInputElement).value;
-  const response = await putUser(id, user!, msg!);
+  firstNameLbl.textContent = "First name:";
+  lastNameLbl.textContent = "Last name:";
+  user!.first_name = firstNameInp.value;
+  user!.last_name = lastNameInp.value;
+  const response = await putUser(id, user!, msg);
   if (response) {
-    handleResponse(response, firstNameLbl!, lastNameLbl!, msg!);
+    handleResponse(response, firstNameLbl, lastNameLbl, msg);
   } else {
-    msg!.textContent = "User has been successfully updated.";
+    msg.textContent = "Changes have been saved.";
   }
 }

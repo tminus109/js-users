@@ -8,7 +8,7 @@ const getInit = {
   },
 };
 
-async function getUsers(msg: Element) {
+async function getUsers(msg: HTMLSpanElement) {
   return await fetch(url, getInit)
     .then((response) => {
       if (!response.ok) {
@@ -17,11 +17,11 @@ async function getUsers(msg: Element) {
       return response.json() as Promise<Array<User>>;
     })
     .catch((error) => {
-      msg!.textContent = error.message;
+      msg.textContent = error.message;
     });
 }
 
-async function postUser(user: User, msg: Element) {
+async function postUser(user: User, msg: HTMLSpanElement) {
   const myInit = {
     method: "POST",
     headers: {
@@ -39,7 +39,7 @@ async function postUser(user: User, msg: Element) {
     });
 }
 
-async function getUser(id: string, msg: Element) {
+async function getUser(id: string, msg: HTMLSpanElement) {
   return await fetch(`${url}/${id}`, getInit)
     .then((response) => {
       return response.json() as Promise<User>;
@@ -49,7 +49,7 @@ async function getUser(id: string, msg: Element) {
     });
 }
 
-async function putUser(id: string, user: User, msg: Element) {
+async function putUser(id: string, user: User, msg: HTMLSpanElement) {
   const myInit = {
     method: "PUT",
     headers: {
@@ -69,9 +69,9 @@ async function putUser(id: string, user: User, msg: Element) {
 
 function handleResponse(
   response: User,
-  firstNameLbl: Element,
-  lastNameLbl: Element,
-  msg: Element
+  firstNameLbl: HTMLLabelElement,
+  lastNameLbl: HTMLLabelElement,
+  msg: HTMLSpanElement
 ) {
   if (response.hasOwnProperty("id")) {
     msg.textContent = "User has been successfully saved.";
