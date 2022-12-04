@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit User</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/forms.css" />
     <link rel="modulepreload" href="/editUser.js" />
     <script type="module" src="/editUser.js"></script>
   </head>
@@ -14,39 +14,42 @@
       <h1>Edit User</h1>
     </header>
     <main>
-      <form action="/new" method="get">
-        <ul>
-          <li>
-            <label for="first-name" id="first-name-lbl">First name:</label>
-          </li>
-          <li>
-            <input
-              type="text"
-              name="first_name"
-              id="first-name"
-              maxlength="20"
-              placeholder="First name"
-              autofocus
-            />
-          </li>
-          <li>
-            <label for="last-name" id="last-name-lbl">Last name:</label>
-          </li>
-          <li>
-            <input
-              type="text"
-              name="last_name"
-              id="last-name"
-              maxlength="20"
-              placeholder="Last name"
-            />
-          </li>
-          <li>
-            <button type="button" id="update-btn">Update</button>
-          </li>
-        </ul>
-      </form>
-      <span id="msg"></span>
+      <fieldset>
+        <legend>Edit user</legend>
+        <form action="/new" method="get">
+          <ul>
+            <li>
+              <label for="first-name" id="first-name-lbl">First name:</label>
+            </li>
+            <li>
+              <input
+                type="text"
+                name="first_name"
+                id="first-name"
+                maxlength="20"
+                placeholder="First name"
+                autofocus
+              />
+            </li>
+            <li>
+              <label for="last-name" id="last-name-lbl">Last name:</label>
+            </li>
+            <li>
+              <input
+                type="text"
+                name="last_name"
+                id="last-name"
+                maxlength="20"
+                placeholder="Last name"
+              />
+            </li>
+            <li>
+              <button type="button" id="update-btn">Update</button>
+            </li>
+          </ul>
+        </form>
+        <span id="msg"></span>
+      </fieldset>
       <footer>
         <a href="/users">Back to users</a>
       </footer>
