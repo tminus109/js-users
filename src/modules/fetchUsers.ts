@@ -1,4 +1,5 @@
 import { User } from "./types.js";
+import { resetLabelsColor } from "./utils.js";
 
 let url = "https://assessment-users-backend.herokuapp.com/users";
 
@@ -73,14 +74,19 @@ function handleResponse(
   lastNameLbl: HTMLLabelElement,
   msg: HTMLSpanElement
 ) {
+  resetLabelsColor(firstNameLbl, lastNameLbl);
+  msg.textContent = "";
+
   if (response.hasOwnProperty("id")) {
     msg.textContent = "User has been successfully saved.";
   } else {
     if (response.hasOwnProperty("first_name")) {
       firstNameLbl.textContent = `First name ${response.first_name[0]}.`;
+      firstNameLbl.style.color = "red";
     }
     if (response.hasOwnProperty("last_name")) {
       lastNameLbl.textContent = `Last name ${response.last_name[0]}.`;
+      lastNameLbl.style.color = "red";
     }
     if (response.hasOwnProperty("status")) {
       msg.textContent = `Status ${response.status[0]}.`;

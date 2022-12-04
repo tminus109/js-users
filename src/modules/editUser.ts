@@ -1,4 +1,5 @@
 import { getUser, handleResponse, putUser } from "./fetchUsers.js";
+import { resetLabelsColor } from "./utils.js";
 
 const firstNameLbl = document.querySelector(
   "#first-name-lbl"
@@ -29,6 +30,7 @@ async function updateUser() {
   if (response) {
     handleResponse(response, firstNameLbl, lastNameLbl, msg);
   } else {
+    resetLabelsColor(firstNameLbl, lastNameLbl);
     msg.textContent = "Changes have been saved.";
   }
 }

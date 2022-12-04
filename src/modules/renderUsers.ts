@@ -1,5 +1,6 @@
 import { putUser } from "./fetchUsers.js";
-import { Status, User } from "./types.js";
+import { User } from "./types.js";
+import { reverseUserStatus, setLockBtnText, setStrikeAttrs } from "./utils.js";
 
 function renderUsers(
   fetchedUsers: User[],
@@ -36,6 +37,8 @@ function renderUsers(
     editBtn.textContent = "Edit";
     lockBtn.textContent = setLockBtnText(user);
 
+    setStrikeAttrs(user, firstNameTd, lastNameTd, createdAtTd);
+
     editBtn.addEventListener("click", () => {
       window.location.href = `/users/${user.id}/edit`;
     });
@@ -50,6 +53,7 @@ function renderUsers(
       } else {
         msg.textContent = "";
         lockBtn.textContent = setLockBtnText(user)!;
+        setStrikeAttrs(user, firstNameTd, lastNameTd, createdAtTd);
       }
     });
 
@@ -61,22 +65,6 @@ function renderUsers(
     newRow.appendChild(lockTd);
     editTd.appendChild(editBtn);
     lockTd.appendChild(lockBtn);
-  }
-}
-
-function setLockBtnText(user: User): string {
-  if (user.status === Status.Locked) {
-    return "Unlock";
-  } else {
-    return "Lock";
-  }
-}
-
-function reverseUserStatus(user: User) {
-  if (user.status === Status.Active) {
-    user.status = Status.Locked;
-  } else {
-    user.status = Status.Active;
   }
 }
 

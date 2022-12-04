@@ -69,7 +69,7 @@ button {
   border: 1px solid #ccc;
   border-radius: 50px;
   font-size: 24px;
-  background-color: white;
+  background-color: #eee;
   color: #4a1eaa;
   cursor: pointer;
 }
@@ -89,8 +89,4 @@ a {
   fieldset {
     width: 100%;
   }
-}
-
-.error {
-  color: red;
 }
