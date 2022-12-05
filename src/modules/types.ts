@@ -5,9 +5,9 @@ enum Status {
 
 type User = {
   id?: number;
-  first_name: string;
-  last_name: string;
-  status: Status;
+  first_name?: string | string[];
+  last_name?: string | string[];
+  status?: Status | string[];
   created_at?: string;
   updated_at?: string;
   url?: string;
