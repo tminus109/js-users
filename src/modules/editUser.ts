@@ -16,8 +16,8 @@ const splitUrl = window.location.href.split("/");
 const id = splitUrl[splitUrl.length - 2];
 const user = await getUser(id, msg);
 
-firstNameInp.value = user!.first_name;
-lastNameInp.value = user!.last_name;
+firstNameInp.value = user!.first_name as string;
+lastNameInp.value = user!.last_name as string;
 
 updateBtn.addEventListener("click", updateUser);
 

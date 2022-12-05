@@ -31,8 +31,8 @@ function renderUsers(
     const editBtn = document.createElement("button");
     const lockBtn = document.createElement("button");
 
-    firstNameTd.textContent = user.first_name;
-    lastNameTd.textContent = user.last_name;
+    firstNameTd.textContent = user.first_name as string;
+    lastNameTd.textContent = user.last_name as string;
     createdAtTd.textContent = user.created_at!;
     editBtn.textContent = "Edit";
     lockBtn.textContent = setLockBtnText(user);
