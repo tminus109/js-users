@@ -32,6 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/express", "npm:4.17.14"],\
             ["@types/jest", "npm:29.2.3"],\
             ["@types/node", "npm:18.11.9"],\
+            ["@types/testing-library__jest-dom", "npm:5.14.5"],\
             ["express", "npm:4.18.2"],\
             ["jest", "virtual:b13dddec9bc712ce8c3a1807a0cf915ce2326be68267180cbcc1df7d8540bbaa27565b39ca36f75e183c9bdfdecd2b37c41b6a6f6881ef2e08c849f2b18b53ac#npm:29.3.1"],\
             ["jest-environment-jsdom", "virtual:b13dddec9bc712ce8c3a1807a0cf915ce2326be68267180cbcc1df7d8540bbaa27565b39ca36f75e183c9bdfdecd2b37c41b6a6f6881ef2e08c849f2b18b53ac#npm:29.3.1"],\
@@ -4303,6 +4304,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/express", "npm:4.17.14"],\
             ["@types/jest", "npm:29.2.3"],\
             ["@types/node", "npm:18.11.9"],\
+            ["@types/testing-library__jest-dom", "npm:5.14.5"],\
             ["express", "npm:4.18.2"],\
             ["jest", "virtual:b13dddec9bc712ce8c3a1807a0cf915ce2326be68267180cbcc1df7d8540bbaa27565b39ca36f75e183c9bdfdecd2b37c41b6a6f6881ef2e08c849f2b18b53ac#npm:29.3.1"],\
             ["jest-environment-jsdom", "virtual:b13dddec9bc712ce8c3a1807a0cf915ce2326be68267180cbcc1df7d8540bbaa27565b39ca36f75e183c9bdfdecd2b37c41b6a6f6881ef2e08c849f2b18b53ac#npm:29.3.1"],\
