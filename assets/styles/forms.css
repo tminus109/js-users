@@ -17,7 +17,7 @@ body {
 
 header,
 footer {
-  margin: 20px 0;
+  margin: 25px 0;
 }
 
 h1 {
@@ -33,11 +33,11 @@ fieldset {
   border: 1px solid #b5a4ed;
   padding: 30px;
   border-radius: 10px;
+  text-align: center;
 }
 
 legend {
   padding: 0 20px;
-  text-align: center;
 }
 
 form {
